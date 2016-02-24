@@ -9,12 +9,15 @@ fi
 
 PKG_ROOT=$(dirname $PWD)
 
-SENSU_VERSION=${SENSU_VERSION:-"$(./bin/sensu-client -V)-1"}
+SENSU_VERSION=${SENSU_VERSION:-"$(./bin/sensu-client -V)"}
 PKG_VERSION=${PKG_VERSION:-"${SENSU_VERSION}-1"}
 
 OUTPUT_DIR=${OUTPUT_DIR:-"/tmp"}
 
 bin_dir="${PKG_ROOT}/bin"
+
+rm -rf $bin_dir
+mkdir $bin_dir
 
 ln -s ../embedded/bin/sensu-client ${bin_dir}/sensu-client
 ln -s ../embedded/bin/sensu-server ${bin_dir}/sensu-server
@@ -22,7 +25,7 @@ ln -s ../embedded/bin/sensu-api ${bin_dir}/sensu-api
 ln -s ../embedded/bin/sensu-install ${bin_dir}/sensu-install
 
 pkgbuild \
-    --version "${VERSION}" \
+    --version "${PKG_VERSION}" \
     --identifier "org.sensuapp.sensu" \
     --root "${PKG_ROOT}" \
     --install-location "${PKG_ROOT}" \
