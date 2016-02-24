@@ -1,3 +1,3 @@
-## Sensu Homebrew Formula
+## Sensu Homebrew
 
 TODO: Write me.

@@ -1,29 +1,18 @@
 #!/bin/sh -e
 
-WORKING_DIR=$(pwd)
+ROOT_DIR=$(pwd)
 
-VERSION=${VERSION:-"latest"}
+VERSION=${VERSION:-"$(./bin/sensu-client -V)-1"}
 
-ROOT_DIR=${ROOT_DIR:-"$(pwd)/omnibus"}
-INSTALL_DIR=${INSTALL_DIR:-"/opt/sensu"}
+INSTALL_DIR=${INSTALL_DIR:-"/opt/sensu/embedded"}
 OUTPUT_DIR=${OUTPUT_DIR:-"/tmp"}
-
-git clone https://github.com/Homebrew/homebrew.git $ROOT_DIR
-
-cp -r Library $ROOT_DIR/
-
-cd $ROOT_DIR
-
-./bin/brew install sensu
-
-cd $WORKING_DIR
 
 pkgbuild \
     --version "${VERSION}" \
     --identifier "org.sensuapp.sensu" \
     --root "${ROOT_DIR}" \
     --install-location "${INSTALL_DIR}" \
-    --filter '/omnibus.sh' \
+    --filter '/bin/sensu-create-omnibus.sh' \
     --filter '/.git.*$' \
     --filter '/.yardopts' \
     --filter '/.*.md$' \
