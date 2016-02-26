@@ -29,6 +29,8 @@ cat <<EOT > ${bin_dir}/sensu-install
 /opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/sensu-install \$@
 EOT
 
+chmod +x ${bin_dir}/sensu-install
+
 pkg_scripts="${PWD}/Cellar/sensu/${SENSU_VERSION}/scripts"
 
 pkgbuild \
