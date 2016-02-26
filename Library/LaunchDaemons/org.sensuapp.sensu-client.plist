@@ -10,8 +10,8 @@
       <string>-d/etc/sensu/conf.d</string>
       <string>-l/var/log/sensu/sensu-client.log</string>
     </array>
-    <key>UserName</key><string>sensu</string>
-    <key>GroupName</key><string>sensu</string>
+    <key>UserName</key><string>_sensu</string>
+    <key>GroupName</key><string>_sensu</string>
     <key>RunAtLoad</key><true/>
     <key>KeepAlive</key><true/>
     <key>StandardOutPath</key><string>/var/log/sensu/sensu-client.log</string>
