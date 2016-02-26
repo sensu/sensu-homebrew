@@ -23,14 +23,13 @@ ln -s ../embedded/bin/sensu-client ${bin_dir}/sensu-client
 ln -s ../embedded/bin/sensu-server ${bin_dir}/sensu-server
 ln -s ../embedded/bin/sensu-api ${bin_dir}/sensu-api
 
-cat <<EOF
-EOM >${bin_dir}/sensu-install
+cat <<EOT > ${bin_dir}/sensu-install
 #!/bin/bash
 
-/opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/sensu-install $@
-EOF
+/opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/sensu-install \$@
+EOT
 
-pkg_scripts="${PKG_ROOT}/Cellar/sensu/${SENSU_VERSION}/scripts"
+pkg_scripts="${PWD}/Cellar/sensu/${SENSU_VERSION}/scripts"
 
 pkgbuild \
     --version "${PKG_VERSION}" \

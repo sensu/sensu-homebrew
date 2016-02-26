@@ -29,8 +29,8 @@ create_sensu_dirs() {
 }
 
 chown_sensu_dirs() {
-    chown -R sensu:sensu /etc/sensu
-    chown sensu:sensu /var/log/sensu
+    chown -R _sensu:_sensu /etc/sensu
+    chown _sensu:_sensu /var/log/sensu
 }
 
 create_sensu_user_group
