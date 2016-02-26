@@ -22,7 +22,13 @@ mkdir $bin_dir
 ln -s ../embedded/bin/sensu-client ${bin_dir}/sensu-client
 ln -s ../embedded/bin/sensu-server ${bin_dir}/sensu-server
 ln -s ../embedded/bin/sensu-api ${bin_dir}/sensu-api
-ln -s ../embedded/bin/sensu-install ${bin_dir}/sensu-install
+
+cat <<EOF
+EOM >${bin_dir}/sensu-install
+#!/bin/bash
+
+/opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/sensu-install $@
+EOF
 
 pkg_scripts="${PKG_ROOT}/Cellar/sensu/${SENSU_VERSION}/scripts"
 
