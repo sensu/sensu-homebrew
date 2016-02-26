@@ -23,8 +23,8 @@ create_sensu_user_group() {
 
 create_sensu_dirs() {
     mkdir -p /etc/sensu/conf.d
-    mkdir /etc/sensu/plugins
-    mkdir /etc/sensu/extensions
+    mkdir -p /etc/sensu/plugins
+    mkdir -p /etc/sensu/extensions
     mkdir -p /var/log/sensu
 }
 
