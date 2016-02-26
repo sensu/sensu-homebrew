@@ -30,10 +30,15 @@ create_sensu_dirs() {
 
 chown_sensu_dirs() {
     chown -R _sensu:_sensu /etc/sensu
-    chown _sensu:_sensu /var/log/sensu
+    chown -R _sensu:_sensu /var/log/sensu
 }
 
-create_sensu_user_group
+id _sensu
+user_exists=$?
+
+if [ $user_exists -eq 0 ]; then
+    create_sensu_user_group
+fi
 
 create_sensu_dirs
 
