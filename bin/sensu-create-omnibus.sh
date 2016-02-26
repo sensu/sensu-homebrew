@@ -24,6 +24,8 @@ ln -s ../embedded/bin/sensu-server ${bin_dir}/sensu-server
 ln -s ../embedded/bin/sensu-api ${bin_dir}/sensu-api
 ln -s ../embedded/bin/sensu-install ${bin_dir}/sensu-install
 
+pkg_scripts="${PKG_ROOT}/Cellar/sensu/${SENSU_VERSION}/scripts"
+
 pkgbuild \
     --version "${PKG_VERSION}" \
     --identifier "org.sensuapp.sensu" \
@@ -40,4 +42,5 @@ pkgbuild \
     --filter 'embedded/share/man/man1/brew.1' \
     --filter 'embedded/share/emacs' \
     --filter 'embedded/.travis.yml' \
+    --scripts "${pkg_scripts}" \
     "${OUTPUT_DIR}/sensu-${PKG_VERSION}.pkg"

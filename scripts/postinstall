@@ -1,0 +1,40 @@
+#!/bin/bash
+# postinst script for sensu
+#
+
+set -e
+
+create_sensu_user_group() {
+    MAXID=$(dscl . -list /Users UniqueID | awk '{print $2}' | sort -ug | tail -1)
+    USERID=$((MAXID+1))
+
+    dscl . -create /Groups/_sensu gid $USERID
+    dscl . -create /Groups/_sensu RealName "Sensu service group"
+    dscl . -create /Groups/_sensu passwd "*"
+
+    dscl . -create /Users/_sensu
+    dscl . -create /Users/_sensu uid $USERID
+    dscl . -create /Users/_sensu gid $USERID
+    dscl . -create /Users/_sensu NFSHomeDirectory /var/empty
+    dscl . -create /Users/_sensu UserShell /bin/bash
+    dscl . -create /Users/_sensu RealName "Sensu service user"
+    dscl . -create /Users/_sensu passwd "*"
+}
+
+create_sensu_dirs() {
+    mkdir -p /etc/sensu/conf.d
+    mkdir /etc/sensu/plugins
+    mkdir /etc/sensu/extensions
+    mkdir -p /var/log/sensu
+}
+
+chown_sensu_dirs() {
+    chown -R sensu:sensu /etc/sensu
+    chown sensu:sensu /var/log/sensu
+}
+
+create_sensu_user_group
+
+create_sensu_dirs
+
+chown_sensu_dirs
